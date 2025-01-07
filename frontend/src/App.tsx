@@ -6,6 +6,8 @@ import MainLayout from "./layout/MainLayout";
 import ChatPage from "./pages/chat/ChatPage";
 import NotFoundPage from "./pages/404/NotFoundPage";
 import AlbumPage from "./pages/album/AlbumPage";
+import AdminPage from "./pages/admin/AdminPage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
           }
         />
         <Route path="/auth-callback" element={<AuthCallbackPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
+      <Toaster />
     </>
   );
 }
