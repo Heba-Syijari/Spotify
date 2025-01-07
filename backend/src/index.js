@@ -20,6 +20,8 @@ const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT;
 
+app.use(cors());
+
 app.use(express.json()); // to parse req.body
 app.use(clerkMiddleware()); // this will add auth to req obj => req.auth
 app.use(
@@ -41,14 +43,12 @@ app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 
 app.use((err, req, res, next) => {
-  res
-    .status(500)
-    .json({
-      message:
-        process.env.NODE_ENV === "production"
-          ? "Internal server error"
-          : err.message,
-    });
+  res.status(500).json({
+    message:
+      process.env.NODE_ENV === "production"
+        ? "Internal server error"
+        : err.message,
+  });
 });
 
 app.listen(PORT, () => {
