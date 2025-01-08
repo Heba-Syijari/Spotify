@@ -6,6 +6,7 @@ import { Album, Music } from "lucide-react";
 import { useMusicStore } from "@/stores/useMusicStore";
 import { useEffect } from "react";
 import SongsTabContent from "./components/SongsTabContent";
+import AlbumsTabContent from "./components/AlbumsTabContent";
 
 const AdminPage = () => {
   const { isAdmin, isLoading } = useAuthStore();
@@ -45,7 +46,7 @@ const AdminPage = () => {
           songs
         </TabsContent>
         <TabsContent value="albums">
-          {/* <AlbumsTabContent /> */}
+          <AlbumsTabContent />
           albums
         </TabsContent>
       </Tabs>
