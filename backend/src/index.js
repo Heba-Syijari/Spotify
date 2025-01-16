@@ -58,9 +58,6 @@ cron.schedule("0 * * * *", () => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome API!");
-});
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
@@ -68,12 +65,12 @@ app.use("/api/songs", songRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
-//   });
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
+  });
+}
 
 app.use((err, req, res, next) => {
   res.status(500).json({
